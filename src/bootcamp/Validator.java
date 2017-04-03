@@ -1,5 +1,22 @@
-package bootcamp;
+/**
+ * James Bryant II
+ * 1/31/17
+ * DecisionMaker.java
+ *
+ * This program prompts the user to enter an integer between
+ * 1-100 and displays the result based on the integer range entered.
+ *
+ * Extended Challenges :
+ * (1)Include a set of parameters to officially end the program
+ *
+ * (2)Ask for user information (ex. name) at the beginning of the application,
+ * and use it to refer to the user throughout the application.
+ *
+ * (3)Add validation to guarantee that a user enters a positive integer
+ * between 1 and 100
+ */
 
+package bootcamp;
 import java.util.Scanner;
 
 public class Validator {
@@ -48,48 +65,16 @@ public class Validator {
         return i;
     }
 
-    public static double getDouble(Scanner sc, String prompt) {
-        double d = 0;
-        boolean isValid = false;
-        while (!isValid)
-        {
-            System.out.print(prompt);
-            if (sc.hasNextDouble())
-            {
-                d = sc.nextDouble();
-                isValid = true;
-            }
-            else
-            {
-                System.out.println("Error! Invalid price. Try again.");
-            }
-            sc.nextLine();  // discard any other data entered on the line
-        }
-        return d;
-    }
 
-    public static double getDouble(Scanner sc, String prompt,
-                                   double min, double max) {
 
-        double d = 0;
-        boolean isValid = false;
-        while (!isValid)
-        {
-            d = getDouble(sc, prompt);
-            if (d < min)
-                System.out.println(
-                        "Error! Number must be " + min + " or greater.");
-            else if (d > max)
-                System.out.println(
-                        "Error! Number must be " + max + " or less.");
-            else
-                isValid = true;
-        }
-        return d;
-    }
+
 
 
 
 }
+
+
+
+
 
 

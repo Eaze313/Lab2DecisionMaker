@@ -1,61 +1,79 @@
-package bootcamp;
-import java.util.Scanner;
-
 /**
  * James Bryant II
  * 1/31/17
  * DecisionMaker.java
+ *
  * This program prompts the user to enter an integer between
  * 1-100 and displays the result based on the integer range entered.
+ *
+ * Extended Challenges :
+ * (1)Include a set of parameters to officially end the program
+ *
+ * (2)Ask for user information (ex. name) at the beginning of the application,
+ * and use it to refer to the user throughout the application.
+ *
+ * (3)Add validation to guarantee that a user enters a positive integer
+ * between 1 and 100
  */
+
+package bootcamp;
+import java.util.Scanner;
+
 public class DecisionMaker {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        //Greeting
-        System.out.println("Welcome to Lab2!");
-        System.out.println(" ");
+        //Greeting Invocation and Initialized Variables
+        String userName = GreetExit.hello(scan);
 
-        //User Interaction
+        String answer = "y";
 
-        String userName = Validator.getString(scan, "What is you're name? ");
+        //While Loop for Repeated Use
+        while (answer.toLowerCase().charAt(0) == 'y') {
 
-        System.out.println("Hello, " + userName);
+        //Get User Number
+        int num = Validator.getInt(scan, userName + ", " + "Enter a Number "
+                    + "between 1 and 100: \n", 1, 100);
 
-        //Initialized Variable for close
-        String answer;
+            //Positive Integer Validation
+            while (num < 1 || num > 100) {
+                System.out.println("Sorry, Invalid Choice. Try Again.");
+            }
 
-    do {
-        int num = Validator.getInt(scan, "Enter a Number between 1 and 100: ",1,100 );
+        //Output Results
+        System.out.println(evenOdd(userName, num));
 
-        //IF-Else Statements to decide what prints to screen
-        if (num %2 != 0 && num < 60){
-            System.out.println(num + " Odd");
+
+        //Continue? (To Lowercase)
+        answer = Validator.getString(scan, "Would like to continue?\n" +
+                "(Type \"yes\" or \"no\")\n").toLowerCase();
         }
-        else if (num %2 == 0 && num >=2 && num < 26){
-            System.out.println("Even and less than 25");
-        }
-        else if (num %2 == 0 && num > 60) {
-            System.out.println(num + " Even");
-        }
-        else {
-            System.out.println("Odd");
-        }
-        System.out.println("Do You Want to Continue? (Type 'no' to quit.)");
 
-        //get the response, turn it lower case
-         answer = scan.next().toLowerCase();
-    } while (!answer.equals("no"));
+        //Issues Goodbye
+        System.out.println(GreetExit.bye(userName));
+        scan.close();
+    }
 
-        System.out.println("Thanks. See You Next Time");
+//Method - Determines if Number is Even or Odd
+public static String evenOdd(String userName, int num) {
 
+    //Statements - If Even
+    if (num %2 ==0) {
+       if (num < 25) {
+           return userName + ", Your number is Even and Less Than 25.";
+       }
+       else if (num > 60) {
+           return userName + ", Your number is: " + num + " Even.";
+       }
+       else {
+           return userName + ", Your number is Even";
+       }
+    }
+    //Statements - If Odd
+    else {
+        return userName + ", Your number is: " + num + " Odd";
+    }
 
+}
 
-
-
-
-
-
-
-    }//end main
-}//end class
+}
